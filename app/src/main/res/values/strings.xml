@@ -1,0 +1,25 @@
+<resources>
+    <string name="app_name">GoogleMaps</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Find Campus Location</string>
+    <string name="nav_header_subtitle">admissions@psu.edu</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="title_activity_google_map">GoogleMapActivity</string>
+    <string name="menu_maps">Maps</string>
+    <string name="map_clean">Map Clean</string>
+    <string name="add_marker">Add Marker</string>
+    <string name="create_polylines">Create Polylines</string>
+    <string name="create_polygons">create_polygon</string>
+    <string name="floating_action_button">Floating Action Button</string>
+    <string name="search">Search</string>
+    <string name="campus_locations">Campus Locations</string>
+    <string name="penn_state_logo_with_name">Penn State Logo with Name</string>
+    <string name="frag_home_welcome">Welcome - Home</string>
+    <string name="campus_locator">Campus Locator</string>
+</resources>
