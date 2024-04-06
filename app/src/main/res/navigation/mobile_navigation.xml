@@ -7,12 +7,17 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.example.googlemaps.fragments.HomeFragment"
+        android:name="com.example.googlemaps.fragment.HomeFragment"
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home" />
     <fragment
+        android:id="@+id/nav_campus"
+        android:name="com.example.googlemaps.fragment.CampusFragment"
+        android:label="Campus"
+        tools:layout="@layout/fragment_campus" />
+    <fragment
         android:id="@+id/nav_map"
-        android:name="com.example.googlemaps.fragments.MapsFragment"
+        android:name="com.example.googlemaps.fragment.MapsFragment"
         android:label="@string/menu_maps"
         tools:layout="@layout/fragment_maps" />
 

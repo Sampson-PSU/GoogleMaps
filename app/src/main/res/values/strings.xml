@@ -22,4 +22,9 @@
     <string name="penn_state_logo_with_name">Penn State Logo with Name</string>
     <string name="frag_home_welcome">Welcome - Home</string>
     <string name="campus_locator">Campus Locator</string>
+    <string name="clear_map">Clear Map</string>
+    <string name="campus_marker">Campus Marker</string>
+    <string name="create_polygon">Create Polygon</string>
+    <string name="menu_campus">Campus</string>
+    <string name="campus">Campus</string>
 </resources>

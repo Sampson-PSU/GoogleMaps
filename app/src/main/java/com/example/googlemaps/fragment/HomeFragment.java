@@ -1,4 +1,4 @@
-package com.example.googlemaps.fragments;
+package com.example.googlemaps.fragment;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;

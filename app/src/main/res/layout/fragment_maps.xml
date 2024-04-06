@@ -2,7 +2,6 @@
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
@@ -60,53 +59,53 @@
             android:id="@+id/option_clear_map"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/map_clean"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:textColor="@color/teal_700"
-            android:textStyle="bold"
+            android:background="?android:attr/selectableItemBackground"
             android:padding="16dp"
-            android:background="?android:attr/selectableItemBackground"/>
+            android:text="@string/clear_map"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/option_add_marker"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/add_marker"
-            app:layout_constraintTop_toBottomOf="@id/option_clear_map"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:background="?android:attr/selectableItemBackground"
             android:padding="16dp"
-            android:textColor="@color/teal_700"
+            android:text="@string/campus_marker"
+            android:textColor="@color/white"
             android:textStyle="bold"
-            android:background="?android:attr/selectableItemBackground"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/option_clear_map" />
 
         <TextView
             android:id="@+id/option_create_polylines"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/create_polylines"
-            app:layout_constraintTop_toBottomOf="@id/option_add_marker"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:textColor="@color/teal_700"
-            android:textStyle="bold"
+            android:background="?android:attr/selectableItemBackground"
             android:padding="16dp"
-            android:background="?android:attr/selectableItemBackground"/>
+            android:text="@string/create_polylines"
+            android:textColor="@color/white"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/option_add_marker" />
 
         <TextView
             android:id="@+id/option_create_polygons"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/create_polygons"
-            app:layout_constraintTop_toBottomOf="@id/option_create_polylines"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:background="?android:attr/selectableItemBackground"
             android:padding="16dp"
-            android:textColor="@color/teal_700"
+            android:text="@string/create_polygon"
+            android:textColor="@color/white"
             android:textStyle="bold"
-            android:background="?android:attr/selectableItemBackground"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/option_create_polylines" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </RelativeLayout>
