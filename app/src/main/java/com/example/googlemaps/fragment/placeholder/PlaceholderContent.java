@@ -1,19 +1,12 @@
 package com.example.googlemaps.fragment.placeholder;
 
+// Import all necessary libraries.
 import androidx.annotation.NonNull;
-
 import com.google.android.gms.maps.model.LatLng;
-
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
+// Nested static class for placeholder items.
 public class PlaceholderContent {
-    public static final List<PlaceholderItem> ITEMS = new ArrayList<>();
-
-    public static final Map<String, PlaceholderItem> ITEM_MAP = new HashMap<>();
 
     public static class PlaceholderItem implements Serializable {
         public final String title;
@@ -24,6 +17,7 @@ public class PlaceholderContent {
             this.description = description;
         }
 
+        // toString() method that returns description.
         @NonNull
         @Override
         public String toString() {

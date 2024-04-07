@@ -25,24 +25,13 @@ public class CampusFragment extends Fragment {
     private static final String ARG_COLUMN_COUNT = "column-count";
     private int mColumnCount = 1;
 
+    // Default constructor for CampusFragment.
     public CampusFragment() {
-    }
-
-    @SuppressWarnings("unused")
-    public static CampusFragment newInstance(int columnCount) {
-        CampusFragment fragment = new CampusFragment();
-        Bundle args = new Bundle();
-        args.putInt(ARG_COLUMN_COUNT, columnCount);
-        fragment.setArguments(args);
-        return fragment;
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        // Load campus data.
-        ArrayList<PlaceholderContent.PlaceholderItem> campus = loadCampusData();
 
         if (getArguments() != null) {
             mColumnCount = getArguments().getInt(ARG_COLUMN_COUNT);
@@ -54,7 +43,7 @@ public class CampusFragment extends Fragment {
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_campus_list, container, false);
 
-        // Set the adapter
+        // Set up the Recycler View adapter.
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
             RecyclerView recyclerView = (RecyclerView) view;
@@ -63,12 +52,14 @@ public class CampusFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
+            // Load campus data.
             recyclerView.setAdapter(new CampusRecyclerViewAdapter(loadCampusData(),this));
         }
         return view;
     }
 
     // Method to load campus data.
+    // Loads campus data and returns list of PlacehodlerItems.
     private ArrayList<PlaceholderContent.PlaceholderItem> loadCampusData() {
         ArrayList<PlaceholderContent.PlaceholderItem> campus = new ArrayList<>();
 

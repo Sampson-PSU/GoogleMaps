@@ -73,7 +73,7 @@ public class MainActivity extends AppCompatActivity {
                     navController.navigate(R.id.nav_campus);
                 }
                 else if(id == R.id.nav_map){
-                navController.navigate(R.id.nav_map);
+                    navController.navigate(R.id.nav_map);
             }
                 // Close the navigation drawer.
                 DrawerLayout drawerLayout = findViewById(R.id.drawer_layout);

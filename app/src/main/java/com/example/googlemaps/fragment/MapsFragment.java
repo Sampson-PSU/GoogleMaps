@@ -1,5 +1,6 @@
 package com.example.googlemaps.fragment;
 
+// Import all necessary libraries.
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.constraintlayout.widget.ConstraintLayout;
@@ -33,23 +34,27 @@ import java.io.IOException;
 import java.util.List;
 
 public class MapsFragment extends Fragment implements View.OnClickListener {
-    private GoogleMap mMap;
-    private SearchView mSearchView;
-    private SupportMapFragment supportMapFragment;
-    private View rootView;
-    private TextView textViewOption1, textViewOption2, textViewOption3, textViewOption4;
-    private FloatingActionButton mFloatingActionButton;
-    private PlaceholderContent.PlaceholderItem placeholderItem;
+    private GoogleMap mMap; // Reference to Google Map.
+    private SearchView mSearchView; // Search view for location.
+    private SupportMapFragment supportMapFragment; // SupportMapFragment for displaying the map.
+    private View rootView; // Root view for the fragment.
+    private TextView textViewOption1, textViewOption2, textViewOption3, textViewOption4; // UI elements.
+    private FloatingActionButton mFloatingActionButton; // Floating Action Button to open ShowOptionsMenu().
+    private PlaceholderContent.PlaceholderItem placeholderItem; // Placeholder item for map marker.
+    private Geocoder geocoder; // Gecode for search view.
 
+    // Callback for when map is ready.
     private final OnMapReadyCallback callback = new OnMapReadyCallback() {
         @Override
         public void onMapReady(@NonNull GoogleMap googleMap) {
-            mMap = googleMap;
-            createSearchViewListener();
+            mMap = googleMap; // Initialize the Google Map.
+            createSearchViewListener(); // Set up search view listener.
+
+            // If a placeholder item exist, add marker and move camera.
             if(placeholderItem != null) {
                 mMap.addMarker(new MarkerOptions().position(placeholderItem.description).title(placeholderItem.title));
                 mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(placeholderItem.description,7));
-                placeholderItem = null;
+                placeholderItem = null; // Clear the placeholder item.
             }
         }
     };
@@ -62,12 +67,16 @@ public class MapsFragment extends Fragment implements View.OnClickListener {
 
         Bundle bundle = getArguments();
         if (bundle != null) {
+            // Retrieve the campus location from the argument.
             placeholderItem = (PlaceholderContent.PlaceholderItem)
                     bundle.getSerializable("campusLocation");
         }
 
+        // Inflate fragment layout and attach the container parent view with false.
+
         rootView = inflater.inflate(R.layout.fragment_maps, container, false);
 
+        // Initialize UI elements.
         textViewOption1 = rootView.findViewById(R.id.option_clear_map);
         textViewOption2 = rootView.findViewById(R.id.option_add_marker);
         textViewOption3 = rootView.findViewById(R.id.option_create_polylines);
@@ -75,13 +84,16 @@ public class MapsFragment extends Fragment implements View.OnClickListener {
 
         mFloatingActionButton = rootView.findViewById(R.id.fab);
 
+        // Set click listener for UI elements.
         textViewOption1.setOnClickListener(this);
         textViewOption2.setOnClickListener(this);
         textViewOption3.setOnClickListener(this);
         textViewOption4.setOnClickListener(this);
 
+        // Set on click listener for floating action button.
         mFloatingActionButton.setOnClickListener(this);
 
+        // Initialize the SearchView by finding it in the root layout.
         mSearchView = rootView.findViewById(R.id.idSearchView);
 
         return rootView;
@@ -95,12 +107,13 @@ public class MapsFragment extends Fragment implements View.OnClickListener {
         supportMapFragment = (SupportMapFragment)
                 getChildFragmentManager().findFragmentById(R.id.nav_map);
 
-        // Async map.
+        // Async map (load).
         if (supportMapFragment != null) {
             supportMapFragment.getMapAsync(callback);
         }
     }
 
+    // Toggles visibility for options menu.
     private void showOptionsMenu() {
         ConstraintLayout optionsMenu = rootView.findViewById(R.id.options_menu);
         if (optionsMenu.getVisibility() == View.VISIBLE) {
@@ -112,6 +125,7 @@ public class MapsFragment extends Fragment implements View.OnClickListener {
         }
     }
 
+    // Adds marker to map at specified location.
     public void addMarker(String location, LatLng coordinates) {
         mMap.addMarker(new MarkerOptions().position(coordinates).title(location));
         // Moves the camera to a specific location, without changing the zoom of the map.
@@ -121,11 +135,11 @@ public class MapsFragment extends Fragment implements View.OnClickListener {
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(coordinates, 9));
     }
 
+    // Create marker for specific locations.
     private void createMarkerOnLocation() {
         String harrisburgCampus = "Penn State - Harrisburg";
         String hersheyCampus = "Penn State - Hershey";
         String yorkCampus = "Penn State - York";
-
 
         // Represent Penn State campus locations we need to use LatLng.
         LatLng harrisburg= new LatLng(40.258655,-76.894376);
@@ -138,6 +152,7 @@ public class MapsFragment extends Fragment implements View.OnClickListener {
         addMarker(yorkCampus, york);
     }
 
+    // OnClick for UI elements (floating action button) and (menu options).
     @Override
     public void onClick(View v) {
         int id = v.getId();
@@ -154,6 +169,7 @@ public class MapsFragment extends Fragment implements View.OnClickListener {
         }
     }
 
+    // Creates polygons on the map using predefined coordinates.
     private void createPolygonsOnMap() {
         // Define the Coordinates  for Polygon A.
         LatLng columbus = new LatLng(39.96712, -82.9988);
@@ -182,6 +198,7 @@ public class MapsFragment extends Fragment implements View.OnClickListener {
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(jacksonville, 4));
     }
 
+    // Create polylines on the map using predefined coordinates.
     private void createPolylinesOnMap() {
         // Define the Coordinates.
         LatLng abington = new LatLng(39.88211, -75.337234);
@@ -207,6 +224,7 @@ public class MapsFragment extends Fragment implements View.OnClickListener {
         mMap.moveCamera(CameraUpdateFactory.newLatLngZoom(altoona, 6));
     }
 
+    // Set up a listener for the ViewSearch to handle location queries.
     private void createSearchViewListener() {
         mSearchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
@@ -218,9 +236,11 @@ public class MapsFragment extends Fragment implements View.OnClickListener {
                 // Check if the location is null.
                 if (locationName != null || locationName.equals("")) {
                     // Initializing the geocode.
-                    Geocoder geocoder = new Geocoder(getContext());
+                    geocoder = new Geocoder(getContext());
                     try {
-                        addressList = geocoder.getFromLocationName(locationName, 1);
+                        if (geocoder != null) {
+                            addressList = geocoder.getFromLocationName(locationName, 1);
+                        }
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
@@ -230,11 +250,18 @@ public class MapsFragment extends Fragment implements View.OnClickListener {
                         address = addressList.get(0);
                     }
                     // Creating the LatLng object to store the address coordinates.
-                    LatLng latLng = new LatLng(address.getLatitude(), address.getLongitude());
+                    LatLng latLng = null;
+                    if (address != null) {
+                        latLng = new LatLng(address.getLatitude(), address.getLongitude());
+                    }
                     // Add a marker.
-                    mMap.addMarker(new MarkerOptions().position(latLng).title(locationName));
+                    if (latLng != null) {
+                        mMap.addMarker(new MarkerOptions().position(latLng).title(locationName));
+                    }
                     // Animate the camera.
-                    mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10));
+                    if (latLng != null) {
+                        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(latLng, 10));
+                    }
                 }
                 return false;
             }
