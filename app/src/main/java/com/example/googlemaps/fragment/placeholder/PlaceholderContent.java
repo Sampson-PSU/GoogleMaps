@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 
 import com.google.android.gms.maps.model.LatLng;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -14,20 +15,20 @@ public class PlaceholderContent {
 
     public static final Map<String, PlaceholderItem> ITEM_MAP = new HashMap<>();
 
-    public static class PlaceholderItem {
+    public static class PlaceholderItem implements Serializable {
         public final String title;
-        public final String description;
+        public final LatLng description;
 
         public PlaceholderItem(String title, LatLng description) {
             this.title = String.valueOf(title);
-            this.description = String.valueOf(description);
+            this.description = description;
         }
 
         @NonNull
         @Override
         public String toString() {
 
-            return description;
+            return String.valueOf(description);
         }
     }
 }

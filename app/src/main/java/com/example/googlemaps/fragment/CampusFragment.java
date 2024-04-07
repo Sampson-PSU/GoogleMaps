@@ -1,5 +1,6 @@
 package com.example.googlemaps.fragment;
 
+// Import all necessary libraries.
 import android.content.Context;
 import android.os.Bundle;
 
@@ -19,19 +20,11 @@ import com.google.android.gms.maps.model.LatLng;
 
 import java.util.ArrayList;
 
-/**
- * A fragment representing a list of Items.
- */
 public class CampusFragment extends Fragment {
-    private PlaceholderContent placeholderContent;
 
     private static final String ARG_COLUMN_COUNT = "column-count";
     private int mColumnCount = 1;
 
-    /**
-     * Mandatory empty constructor for the fragment manager to instantiate the
-     * fragment (e.g. upon screen orientation changes).
-     */
     public CampusFragment() {
     }
 
@@ -70,7 +63,7 @@ public class CampusFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new CampusRecyclerViewAdapter(loadCampusData()));
+            recyclerView.setAdapter(new CampusRecyclerViewAdapter(loadCampusData(),this));
         }
         return view;
     }
